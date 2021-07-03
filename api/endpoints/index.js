@@ -1,7 +1,7 @@
-const { params, body } = require('express-validator');
+const { check, body } = require('express-validator');
 const { getWeather, getCustomWeather } = require('../controllers/weather');
 
-const getWeatherValidator = params('city').exists();
+const getWeatherValidator = check('city').exists();
 const getCustomWeatherValidator = [body('city').exists(), body('temperatureScale').exists()];
 
 
@@ -20,7 +20,7 @@ module.exports = function(app) {
 
     // Get custom weather for city
 
-    app.post('/weather', getCustomWeatherValidator, (req, res) => {
+    app.post('/weather', getCustomWeatherValidator, async (req, res) => {
         try {
             const weatherObject = await getCustomWeather(req, res);
             res.status(200).json(weatherObject);
