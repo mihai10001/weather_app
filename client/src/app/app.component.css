@@ -1,0 +1,26 @@
+.example-search {
+    width: 50%;
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+.example-card {
+    background-color: #f7f7f7;
+    max-width: 300px;
+    margin: 10px;
+}
+
+.example-forecast-card {
+    background-color: #f7f7f7;
+    display: inline-block;
+    max-width: 250px;
+    margin: 10px;
+}
+
+.example-image {
+    max-width: 200px;
+}
+
+.example-title {
+    margin: 20px;
+}

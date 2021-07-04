@@ -33,10 +33,9 @@ const getWeatherHandler = async (city, degreeType) => {
             (error, result) => {
                 if(error) 
                     reject(error);
-                
-                const weatherData = result.pop();
 
-                if (weatherData) {
+                const weatherData = result.pop();
+                if (result && weatherData) {
                     const location = pick(weatherData.location, locationProperties);
                     const currentWeather = pick(weatherData.current, currentWeatherProperties);
                     const forecasts = weatherData.forecast.map(forecast =>
