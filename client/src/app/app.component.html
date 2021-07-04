@@ -1,3 +1,11 @@
+<div class="mat-display-2 example-title">Weather app</div>
+
+<mat-form-field class="example-search" appearance="fill">
+    <input matInput [formControl]="searchCity" (keyup.enter)="onSearch()">
+    <mat-label><mat-icon>search</mat-icon> Search for a place to find weather</mat-label>
+</mat-form-field>
+<button mat-flat-button color="primary" (click)="onSearch()">Search</button>
+
 <ng-container *ngIf="!weatherObject">
     <div class="mat-subheading-2 example-title">No place found! Try searching for another place above</div>
 </ng-container>

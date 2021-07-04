@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { WeatherService } from './weather.service';
 import { weatherObjectModel } from './weather.model';
@@ -11,12 +12,18 @@ import { weatherObjectModel } from './weather.model';
 export class AppComponent {
 
   weatherObject: weatherObjectModel | undefined = undefined;
-  title = 'client';
+  searchCity = new FormControl('');
 
   constructor(
     private weatherService: WeatherService
   ) { }
 
+  onSearch() {
+    if (!this.searchCity.value)
+      return;
+    
+    this.getWeather(this.searchCity.value);
+  }
 
   getWeather(city: string) {
     this.weatherService
