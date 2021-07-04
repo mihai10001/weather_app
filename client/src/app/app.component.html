@@ -1,1 +1,43 @@
-ceva
+<ng-container *ngIf="!weatherObject">
+    <div class="mat-subheading-2 example-title">No place found! Try searching for another place above</div>
+</ng-container>
+
+<ng-container  *ngIf="weatherObject">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>{{ weatherObject.locationObject?.name }}</mat-card-title>
+            <mat-card-subtitle>
+                {{ 
+                'Lat: ' + weatherObject.locationObject?.lat + ' ' +
+                'Long: ' + weatherObject.locationObject?.long 
+                }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{ weatherObject.currentWeatherObject?.imageUrl }}" class="example-image">
+        <mat-card-content>
+            <ul>
+                <li><h3>Temperature: {{ weatherObject.currentWeatherObject?.temperature }}</h3></li>
+                <li>Date: {{ weatherObject.currentWeatherObject?.date }}</li>
+                <li>Hour: {{ weatherObject.currentWeatherObject?.observationtime }}</li>
+                <li>Feels like: {{ weatherObject.currentWeatherObject?.feelslike }}</li>
+                <li>Wind: {{ weatherObject.currentWeatherObject?.winddisplay }}</li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+    
+    <div class="mat-display-2 example-title">Forecast</div>
+    <mat-card class="example-forecast-card" *ngFor="let forecast of weatherObject.forecastWeatherObject">
+        <mat-card-header>
+            <mat-card-title>{{ forecast.date }}</mat-card-title>
+            <mat-card-subtitle>{{ forecast.day }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <ul>
+                <li>Temperature low: {{ forecast.low }}</li>
+                <li>Temperature high: {{ forecast.high }}</li>
+                <li>Description: {{ forecast.skytextday }}</li>
+                <li>Precipitation: {{ forecast.precip }} %</li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
